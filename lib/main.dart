@@ -8,6 +8,7 @@ import 'admin/BottomNavigationBarItem.dart';
 import 'admin/ProfilePage.dart';
 import 'USER/homePage.dart';
 import 'USER/profileuser.dart';
+import 'admin/UsersPage.dart';
 import 'encryption-decryption/UploadFile.dart';
 import 'login/LoGinPage.dart';
 import 'myTheme.dart';
@@ -35,9 +36,10 @@ class MyApp extends StatelessWidget {
         EncryptionPage.routeName:(context) => EncryptionPage(),
         LoGinPage.routename:(context) => LoGinPage(),
         UserHomePage.routename: (context) => UserHomePage(),
-        ProfilePageUser.routename:(context) => ProfilePageUser(),
+        //ProfilePageUser.routename:(context) => ProfilePageUser(),
         ADDUser.routename:(context) => ADDUser(),
         Splachscreeen.routename:(context) => Splachscreeen(),
+        UsersPage.routename:(context) => UsersPage(),
 
       },
 

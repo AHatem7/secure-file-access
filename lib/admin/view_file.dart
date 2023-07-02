@@ -110,7 +110,33 @@ class _viewfileState extends State<viewfile> {
                             ),
                             ElevatedButton(
                                 onPressed: () {
-                                  _deleteFile();
+
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                                        title: Text(""),
+                                        content: Text(" Are you sure want to delete this file? "),
+                                        actions: [
+                                          TextButton(
+                                            child: Text("No"),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                          ),
+                                          TextButton(
+                                            child: Text("Yes"),
+                                            onPressed: () {
+                                              _deleteFile();
+                                              Navigator.pop(context,
+                                                  MaterialPageRoute(builder: (context) => Departments()));
+                                            },
+                                          ),
+
+                                        ],
+                                      );
+                                    },
+                                  );
                                 },
                                 child: Text('Delete',
                                     style: TextStyle(fontSize: 20)),

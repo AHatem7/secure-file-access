@@ -62,7 +62,8 @@ class _ChatPageState extends State<ChatPage> {
         Background('assets/images/BG1.png'),
         Scaffold(
           backgroundColor: Colors.transparent,
-          appBar: AppBar(
+          appBar:
+          AppBar(
             backgroundColor: Colors.transparent,
             title: Text(widget.selectedUser['firstname'] +
                 ' ' +

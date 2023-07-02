@@ -75,6 +75,7 @@ class _LoGinPageState extends State<LoGinPage> {
                           if (authService.email !=""&&authService.password !="")
                           {
                             authService.LoginHelper(context);
+
                           }
                         },
                             style: ElevatedButton.styleFrom(

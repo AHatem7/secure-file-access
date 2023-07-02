@@ -48,22 +48,22 @@ class _EncryptionPageState extends State<EncryptionPage> {
   final _textController = TextEditingController();
   final _fileNameController = TextEditingController();
 
-  Widget _buildFileNameRow() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-      child: TextField(
-        controller: _fileNameController,
-        decoration: InputDecoration(
-          focusedBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: Color(0xffDCCDA8), width: 2.0),
-          ),
-          enabledBorder: const UnderlineInputBorder(
-              borderSide: BorderSide(color: Color(0xffDCCDA8), width: 1.5)),
-          hintText: "Enter new file name",
-        ),
-      ),
-    );
-  }
+  // Widget _buildFileNameRow() {
+  //   return Padding(
+  //     padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+  //     child: TextField(
+  //       controller: _fileNameController,
+  //       decoration: InputDecoration(
+  //         focusedBorder: const UnderlineInputBorder(
+  //           borderSide: BorderSide(color: Color(0xffDCCDA8), width: 2.0),
+  //         ),
+  //         enabledBorder: const UnderlineInputBorder(
+  //             borderSide: BorderSide(color: Color(0xffDCCDA8), width: 1.5)),
+  //         hintText: "Enter new file name",
+  //       ),
+  //     ),
+  //   );
+  // }
 
   Widget _buildAddFileButton() {
     return Row(
@@ -188,13 +188,17 @@ class _EncryptionPageState extends State<EncryptionPage> {
                   final encryptedFile = await saveFile(encFilepath!);
                   final fileName = encryptedFile.path.split('/').last;
                   final fileBytes = await encryptedFile.readAsBytes();
+
                   //Add metadata to the upload task
-                  final metadata = SettableMetadata(
-                    contentType: 'application/octet-stream',
-                    customMetadata: {'filename':_fileNameController.text});
+                  // final metadata = SettableMetadata(
+                  //   contentType: 'application/octet-stream',
+                  //   customMetadata: {'filename':_fileNameController.text});
+
                   //Upload the encrypted file to firebase
                   final storageRef = FirebaseStorage.instance.ref('Encrypted/$fileName');
-                  final uploadTask = storageRef.putData(fileBytes, metadata);
+                  final uploadTask = storageRef.putData(fileBytes,
+                      // metadata
+                  );
 
                   await uploadTask.whenComplete(()  =>{
                     print('File upload success.  '),
@@ -287,7 +291,7 @@ class _EncryptionPageState extends State<EncryptionPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 _buildAddFileButton(),
-                _buildFileNameRow(),
+                // _buildFileNameRow(),
                 _buildPasswordRow(),
                 _buildEncryptButton()
               ],
@@ -314,20 +318,21 @@ class _EncryptionPageState extends State<EncryptionPage> {
               resizeToAvoidBottomInset: false,
               body:
               Stack(
-
                 children: <Widget>[
-
-                  Column(children: [SizedBox(height:40 ,),
-
-                    Row(children: [SizedBox(width: 20,),
+                  Column(
+                    children: [
+                    SizedBox(height:40 ,),
+                    Row(
+                        children: [SizedBox(width: 20,),
                       FloatingActionButton(onPressed: (){
                         Navigator.pop(context,
-                            MaterialPageRoute(builder: (context)=> Departments()));
-
-                      }, child: Icon(Icons.arrow_back,color: Colors.black),
+                            MaterialPageRoute(builder: (context)=> Departments()));},
+                          child: Icon(Icons.arrow_back,color: Colors.black),
                           backgroundColor: Colors.white),
-                    ],),
-                  ],),
+                        ]
+                    ),
+                    ],
+                  ),
 
 
                   Column(

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'AddNewUser.dart';
@@ -6,6 +7,31 @@ import 'AddNewUser.dart';
 
 class UsersPage extends StatelessWidget {
   const UsersPage({Key? key}) : super(key: key);
+  static String routename = 'UsersPage';
+
+  Future<void> deleteUser(String userId, BuildContext context) async {
+    try {
+      // Delete the user from Firebase Authentication
+      //await FirebaseAuth.instance.currentUser!.delete();
+
+      // Delete the user from Cloud Firestore
+      await FirebaseFirestore.instance.collection('user').doc(userId).delete();
+
+      // Show a success message to the user
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('User deleted successfully'),
+        ),
+      );
+    } catch (e) {
+      // Show an error message to the user
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error deleting user: $e'),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,8 +80,7 @@ class UsersPage extends StatelessWidget {
                                                       SlidableAction(
                                                         onPressed:
                                                             (buildContext) async {
-                                                          DocumentReference
-                                                              userDocRef =
+                                                          DocumentReference userDocRef =
                                                               FirebaseFirestore.instance
                                                                   .collection('user')
                                                                   .doc(data.id);
@@ -79,7 +104,8 @@ class UsersPage extends StatelessWidget {
                                                                     TextButton(
                                                                       child: Text("Yes"),
                                                                       onPressed: () {
-                                                                        userDocRef.delete();
+                                                                         userDocRef.delete();
+                                                                        // deleteUser(data.id, context);
                                                                         Navigator.of(context).pop();
                                                                         showDialog(context: context,
                                                                           builder: (BuildContext context) {
@@ -119,15 +145,15 @@ class UsersPage extends StatelessWidget {
                                                 child: Card(
                                                   shape: RoundedRectangleBorder(
                                                       borderRadius:
-                                                          BorderRadius.circular(15)),
+                                                          BorderRadius.circular(20)),
                                                   child: Container(
-                                                    height: 180,
-                                                    width: 325,
-                                                    child: Column(
+                                                    height: 160,
+                                                    child:
+                                                    Column(
                                                       crossAxisAlignment:
                                                           CrossAxisAlignment.start,
                                                       mainAxisAlignment:
-                                                          MainAxisAlignment.spaceAround,
+                                                          MainAxisAlignment.spaceEvenly,
                                                       children: [
                                                         Row(
                                                           children: [
@@ -155,8 +181,12 @@ class UsersPage extends StatelessWidget {
                                                             SizedBox(
                                                               width: 18,
                                                             ),
-                                                            Text(data['email'],
-                                                                style: TextStyle(fontSize: 13)),
+                                                            Flexible(
+                                                              child: Text(data['email'],
+                                                                  style: TextStyle(fontSize: 13),
+                                                                maxLines: 3,
+                                                              ),
+                                                            ),
                                                           ],
                                                         ),
                                                         Row(
