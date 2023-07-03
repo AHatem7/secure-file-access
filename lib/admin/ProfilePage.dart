@@ -216,9 +216,7 @@ class ProfilePage extends StatelessWidget {
                   children: [
                     TextButton(
                         onPressed: () {
-                          {
-
-                            showDialog(
+                          {showDialog(
                               context: context,
                               builder: (BuildContext context) {
                                 return AlertDialog(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),

@@ -15,6 +15,8 @@ class ADDUser extends StatefulWidget {
 class _ADDUserState extends State<ADDUser> {
   AuthService authService = AuthService();
 
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   String selectedRole ='';
 
   @override
@@ -50,178 +52,183 @@ class _ADDUserState extends State<ADDUser> {
               ),
               Expanded(
                 flex: 6,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    const SizedBox(height: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          height: 55,
-                          width: 160,
-                          child: TextFormField(
-                            controller: authService.firstname,
-                            decoration: InputDecoration(
-                                filled: true,
-                                fillColor: Colors.white,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(18),
-                                  borderSide: const BorderSide(
-                                      width: 0, style: BorderStyle.none),
-                                ),
-                                hintText: 'First Name',
-                                hintStyle:
-                                    const TextStyle(color: Colors.black)),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 25,
-                        ),
-                        SizedBox(
-                          width: 160,
-                          height: 55,
-                          child: TextFormField(
-                            controller: authService.lastname,
-                            decoration: InputDecoration(
-                                filled: true,
-                                fillColor: Colors.white,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(18),
-                                  borderSide: const BorderSide(
-                                      width: 0, style: BorderStyle.none),
-                                ),
-                                hintText: 'Last Name',
-                                hintStyle:
-                                    const TextStyle(color: Colors.black)),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 55,
-                      width: 350,
-                      child: TextFormField(
-                        controller: authService.email,
-                        decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Colors.white,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(18),
-                              borderSide: const BorderSide(
-                                  width: 0, style: BorderStyle.none),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      const SizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            height: 55,
+                            width: 160,
+                            child: TextFormField(
+                              controller: authService.firstname,
+                              decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18),
+                                    borderSide: const BorderSide(
+                                        width: 0, style: BorderStyle.none),
+                                  ),
+                                  hintText: 'First Name',
+                                  hintStyle:
+                                      const TextStyle(color: Colors.black)),
                             ),
-                            hintText: 'Email',
-                            hintStyle: const TextStyle(color: Colors.black)),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 350,
-                      height: 55,
-                      child: TextFormField(
-                        controller: authService.password,
-                        decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Colors.white,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(18),
-                              borderSide: const BorderSide(
-                                  width: 0, style: BorderStyle.none),
-                            ),
-                            hintText: 'Password',
-                            hintStyle: const TextStyle(color: Colors.black)),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 55,
-                      width: 350,
-                      child: TextFormField(
-                        controller: authService.phone,
-                        decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Colors.white,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(18),
-                              borderSide: const BorderSide(
-                                  width: 0, style: BorderStyle.none),
-                            ),
-                            hintText: 'Phone',
-                            hintStyle: const TextStyle(color: Colors.black)),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 55,
-                      width: 350,
-                      child: TextFormField(
-                        controller: authService.department,
-                        decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Colors.white,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(18),
-                              borderSide: const BorderSide(
-                                  width: 0, style: BorderStyle.none),
-                            ),
-                            hintText: 'Department',
-                            hintStyle: const TextStyle(color: Colors.black)),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 70,
-                      width: 350,
-                      child: DropdownButtonFormField<String>(
-                        //value: selectedRole,
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.white,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            borderSide: BorderSide(
-                              width: 0,
-                              style: BorderStyle.none
-                            )
                           ),
-                          hintText: 'Role',
-                          hintStyle: TextStyle(
-                            color: Colors.black
-                          )
-                        ),
-                        items: [
-                          DropdownMenuItem(
-                            child: Text('Admin'),
-                            value: 'Admin',
+                          SizedBox(
+                            width: 25,
                           ),
-                          DropdownMenuItem(
-                            child: Text('User'),
-                            value: 'User',
+                          SizedBox(
+                            width: 160,
+                            height: 55,
+                            child: TextFormField(
+                              controller: authService.lastname,
+                              decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18),
+                                    borderSide: const BorderSide(
+                                        width: 0, style: BorderStyle.none),
+                                  ),
+                                  hintText: 'Last Name',
+                                  hintStyle:
+                                      const TextStyle(color: Colors.black)),
+                            ),
                           ),
                         ],
-                        onChanged: (value) {
-                          setState(() {
-                            //selectedRole = value!;
-                            authService.selectedRole.text = value!;
-                          });
-                        },
                       ),
-                    ),
-                    SizedBox(
-                      height: 35,
-                    ),
-                    ElevatedButton(
-                        onPressed: () {
-                          if (authService.email != "" &&
-                              authService.password != "") {
-                            authService.hendiregester(context);
-                          }
-                        },
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                const Color.fromRGBO(220, 205, 168, 1),
-                            fixedSize: const Size(350, 50),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18))),
-                        child: const Text('Add User')),
-                  ],
+                      SizedBox(
+                        height: 55,
+                        width: 350,
+                        child: TextFormField(
+                          controller: authService.email,
+                          decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Colors.white,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(18),
+                                borderSide: const BorderSide(
+                                    width: 0, style: BorderStyle.none),
+                              ),
+                              hintText: 'Email',
+                              hintStyle: const TextStyle(color: Colors.black)),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 350,
+                        height: 55,
+                        child: TextFormField(
+                          controller: authService.password,
+                          decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Colors.white,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(18),
+                                borderSide: const BorderSide(
+                                    width: 0, style: BorderStyle.none),
+                              ),
+                              hintText: 'Password',
+                              hintStyle: const TextStyle(color: Colors.black)),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 55,
+                        width: 350,
+                        child: TextFormField(
+                          controller: authService.phone,
+                          decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Colors.white,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(18),
+                                borderSide: const BorderSide(
+                                    width: 0, style: BorderStyle.none),
+                              ),
+                              hintText: 'Phone',
+                              hintStyle: const TextStyle(color: Colors.black)),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 55,
+                        width: 350,
+                        child: TextFormField(
+                          controller: authService.department,
+                          decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Colors.white,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(18),
+                                borderSide: const BorderSide(
+                                    width: 0, style: BorderStyle.none),
+                              ),
+                              hintText: 'Department',
+                              hintStyle: const TextStyle(color: Colors.black)),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 70,
+                        width: 350,
+                        child: DropdownButtonFormField<String>(
+                          //value: selectedRole,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide: BorderSide(
+                                width: 0,
+                                style: BorderStyle.none
+                              )
+                            ),
+                            hintText: 'Role',
+                            hintStyle: TextStyle(
+                              color: Colors.black
+                            )
+                          ),
+                          items: [
+                            DropdownMenuItem(
+                              child: Text('Admin'),
+                              value: 'Admin',
+                            ),
+                            DropdownMenuItem(
+                              child: Text('User'),
+                              value: 'User',
+                            ),
+                          ],
+                          onChanged: (value) {
+                            setState(() {
+                              //selectedRole = value!;
+                              authService.selectedRole.text = value!;
+                            });
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        height: 35,
+                      ),
+                      ElevatedButton(
+                          onPressed: () {
+                            if (authService.email != "" &&
+                                authService.password != "") {
+                              authService.hendiregester(context);
+                            }
+                            Navigator.pop(context,
+                                MaterialPageRoute(builder: (context) => UsersPage()));
+                          },
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  const Color.fromRGBO(220, 205, 168, 1),
+                              fixedSize: const Size(350, 50),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18))),
+                          child: const Text('Add User')),
+                    ],
+                  ),
                 ),
               ),
               Expanded(

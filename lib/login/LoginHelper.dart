@@ -55,7 +55,6 @@ class AuthService{
           password.clear();
 
         }
-
       }
        if (userSnapshot.docs.length == 1) {
         String role = userSnapshot.docs[0]['role'];
@@ -77,7 +76,7 @@ class AuthService{
         builder: (BuildContext context) {
           return AlertDialog(
             title: Text("SomeThing went wrong"),
-            content: Text(" Unvalid email or password  "),
+            content: Text(" Invalid email or password "),
             actions: [
               TextButton(
                 child: Text("Close"),

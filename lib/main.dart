@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled2/USER/userlistUser.dart';
 import 'package:untitled2/admin/Departments.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:untitled2/splashscreen.dart';
@@ -7,7 +8,6 @@ import 'admin/AddNewUser.dart';
 import 'admin/BottomNavigationBarItem.dart';
 import 'admin/ProfilePage.dart';
 import 'USER/homePage.dart';
-import 'USER/profileuser.dart';
 import 'admin/UsersPage.dart';
 import 'encryption-decryption/UploadFile.dart';
 import 'login/LoGinPage.dart';
@@ -36,10 +36,10 @@ class MyApp extends StatelessWidget {
         EncryptionPage.routeName:(context) => EncryptionPage(),
         LoGinPage.routename:(context) => LoGinPage(),
         UserHomePage.routename: (context) => UserHomePage(),
-        //ProfilePageUser.routename:(context) => ProfilePageUser(),
         ADDUser.routename:(context) => ADDUser(),
         Splachscreeen.routename:(context) => Splachscreeen(),
         UsersPage.routename:(context) => UsersPage(),
+        UsersListPage1.routename:(context) => UsersListPage1(),
 
       },
 

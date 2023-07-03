@@ -54,7 +54,7 @@ class _DirectoryPageState extends State<DirectoryPage> {
               padding: EdgeInsets.zero,
               children: <Widget>[
                 DrawerHeader(
-                  decoration: BoxDecoration(color: Colors.red,
+                  decoration: BoxDecoration(
                       image: DecorationImage(image: AssetImage('assets/images/img.png'),
                           fit: BoxFit.cover)
 

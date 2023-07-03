@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:untitled2/USER/profileuser.dart';
+import 'package:untitled2/USER/userlistUser.dart';
 import 'package:untitled2/chat/userlist.dart';
 import '../admin/ProfilePage.dart';
 import '../backgrounds.dart';
@@ -55,8 +57,8 @@ class _UserNavBarState extends State<UserNavBar> {
   }
   List<Widget> tabs = [
     UserHomePage(),
-    UsersListPage(),
+    UsersListPage1(),
     decryptionPage(),
-    ProfilePage()
+    ProfilePageUser()
   ];
 }
