@@ -15,6 +15,8 @@ AuthService authService= AuthService();
 
 class _LoGinPageState extends State<LoGinPage> {
 
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,6 +40,7 @@ class _LoGinPageState extends State<LoGinPage> {
 
               Expanded(flex: 9,
                 child: Form(
+                    key: _formKey,
                     child:
                     Column(
                       children: [
@@ -50,8 +53,14 @@ class _LoGinPageState extends State<LoGinPage> {
                                   borderSide: const BorderSide(width: 0, style: BorderStyle.none),
                                 ),
                                 hintText: 'Email',
-                                hintStyle: const TextStyle(color: Colors.black)
+                                hintStyle: const TextStyle(color: Colors.black),
                             ),
+                            validator: (value) {
+                              if(value ==null || value.isEmpty){
+                                return 'Please enter an Email';
+                              }
+                              return null;
+                            },
                           ),
 
                         ),SizedBox(height: 15,),
@@ -69,10 +78,16 @@ class _LoGinPageState extends State<LoGinPage> {
                                 hintStyle: const TextStyle(color: Colors.black
                                 )
                             ),
+                            validator: (value) {
+                              if(value ==null || value.isEmpty){
+                                return 'Please enter a Password';
+                              }
+                              return null;
+                            },
                           ),
                         ),SizedBox(height: 30,),
                         ElevatedButton(onPressed: (){
-                          if (authService.email !=""&&authService.password !="")
+                          if (_formKey.currentState!.validate())
                           {
                             authService.LoginHelper(context);
 

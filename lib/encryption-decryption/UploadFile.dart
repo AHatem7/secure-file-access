@@ -201,7 +201,7 @@ class _EncryptionPageState extends State<EncryptionPage> {
                   );
 
                   await uploadTask.whenComplete(()  =>{
-                    print('File upload success.  '),
+                    print('File upload success.'),
                     print(encFilepath)}
                   );
 
@@ -228,7 +228,7 @@ class _EncryptionPageState extends State<EncryptionPage> {
                   // It goes here if overwrite mode set as 'AesCryptFnMode.warn'
                   // and encrypted file already exists.
                   if (e.type == AesCryptExceptionType.destFileExists) {
-                    print('The encryption has been completed unsuccessfully.');
+                    print('The encryption has not been completed.');
                     print(e.message);
                   }
                 }

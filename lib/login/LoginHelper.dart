@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '../USER/UserBottomNav.dart';
 import '../admin/BottomNavigationBarItem.dart';
+import '../admin/UsersPage.dart';
 import 'LoGinPage.dart';
 
 class AuthService{
@@ -132,7 +133,8 @@ class AuthService{
               TextButton(
                 child: Text("Close"),
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  Navigator.pop(context,
+                      MaterialPageRoute(builder: (context) => UsersPage()));
                 },
               ),
 

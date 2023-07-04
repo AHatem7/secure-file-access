@@ -77,14 +77,20 @@ class _ADDUserState extends State<ADDUser> {
                                   hintText: 'First Name',
                                   hintStyle:
                                       const TextStyle(color: Colors.black)),
+                              validator: (value) {
+                                if(value ==null || value.isEmpty){
+                                  return 'Please enter a First Name';
+                                }
+                                return null;
+                              },
                             ),
                           ),
                           SizedBox(
                             width: 25,
                           ),
                           SizedBox(
-                            width: 160,
                             height: 55,
+                            width: 160,
                             child: TextFormField(
                               controller: authService.lastname,
                               decoration: InputDecoration(
@@ -98,6 +104,12 @@ class _ADDUserState extends State<ADDUser> {
                                   hintText: 'Last Name',
                                   hintStyle:
                                       const TextStyle(color: Colors.black)),
+                              validator: (value) {
+                                if(value ==null || value.isEmpty){
+                                  return 'Please enter a Last Name';
+                                }
+                                return null;
+                              },
                             ),
                           ),
                         ],
@@ -117,11 +129,17 @@ class _ADDUserState extends State<ADDUser> {
                               ),
                               hintText: 'Email',
                               hintStyle: const TextStyle(color: Colors.black)),
+                          validator: (value) {
+                            if(value ==null || value.isEmpty){
+                              return 'Please enter an Email';
+                            }
+                            return null;
+                          },
                         ),
                       ),
                       SizedBox(
-                        width: 350,
                         height: 55,
+                        width: 350,
                         child: TextFormField(
                           controller: authService.password,
                           decoration: InputDecoration(
@@ -134,6 +152,14 @@ class _ADDUserState extends State<ADDUser> {
                               ),
                               hintText: 'Password',
                               hintStyle: const TextStyle(color: Colors.black)),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter a password';
+                            } else if (value.length < 8) {
+                              return 'Password must be at least 8 characters';
+                            }
+                            return null;
+                          },
                         ),
                       ),
                       SizedBox(
@@ -151,6 +177,12 @@ class _ADDUserState extends State<ADDUser> {
                               ),
                               hintText: 'Phone',
                               hintStyle: const TextStyle(color: Colors.black)),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your Phone Number';
+                            }
+                            return null;
+                          },
                         ),
                       ),
                       SizedBox(
@@ -168,6 +200,12 @@ class _ADDUserState extends State<ADDUser> {
                               ),
                               hintText: 'Department',
                               hintStyle: const TextStyle(color: Colors.black)),
+                          validator: (value) {
+                            if(value ==null || value.isEmpty){
+                              return 'Please enter a Department';
+                            }
+                            return null;
+                          },
                         ),
                       ),
                       SizedBox(
@@ -206,6 +244,12 @@ class _ADDUserState extends State<ADDUser> {
                               authService.selectedRole.text = value!;
                             });
                           },
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please select a Role';
+                            }
+                            return null;
+                          },
                         ),
                       ),
                       SizedBox(
@@ -213,12 +257,11 @@ class _ADDUserState extends State<ADDUser> {
                       ),
                       ElevatedButton(
                           onPressed: () {
-                            if (authService.email != "" &&
-                                authService.password != "") {
+                            if (_formKey.currentState!.validate()) {
                               authService.hendiregester(context);
                             }
-                            Navigator.pop(context,
-                                MaterialPageRoute(builder: (context) => UsersPage()));
+                            // Navigator.pop(context,
+                            //     MaterialPageRoute(builder: (context) => UsersPage()));
                           },
                           style: ElevatedButton.styleFrom(
                               backgroundColor:
